@@ -45,3 +45,63 @@ const init = async () => {
 };
 
 init();
+
+const addCrewmate = async () => {
+    await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'menu',
+            message: 'Recruit a',
+            choices: ['shipwright', 'crewmate', 'Crew complete!']
+        }
+    ])
+    .then(async (answers) => {
+        const role = answers.menu;
+        await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: `What is the ${role}'s name?`,
+                when: role != 'Crew complete!'
+            },
+            {
+                type: 'input',
+                name: 'id',
+                message: `What is the ${role}'s employee ID?`,
+                when: role != 'Crew complete!'
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: `What is an email address for the ${role}?`,
+                when: role != 'Crew complete!'
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: `What is the shipwright's GitHub username?`,
+                when: role === 'shipwright'
+            },
+            {
+                type: 'input',
+                name: 'school',
+                message: 'What school does the crewmate attend?',
+                when: role === 'crewmate'
+            }
+        ])
+
+        .then((answers) => {
+            if (role === 'shipwright') {
+                const shipwright = new Engineer(answers.name, answers.id, answers.email, answers.github);
+                crew.push(shipwright);
+                addCrewmate();
+            } else if (role === 'crewmate') {
+                const crewmate = new Intern(answers.name, answers.id, answers.email, answers.school);
+                crew.push(crewmate);
+                addCrewmate();
+            } else {
+                return writeToFile(generateHTML(crew));
+            }
+        })
+    });
+};
