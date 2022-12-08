@@ -1,3 +1,66 @@
+const renderCrewProfile = (crew) => {
+    const crewProfile = [];
+
+    for (let i = 0; i < crew.length; i++) {
+        const shipmate = crew[i];
+        const name = shipmate.getName();
+        const id = shipmate.getId();
+        const email = shipmate.getEmail();
+        const role = shipmate.getRole();
+
+        if (role === 'Manager') {
+            const officeNumber = shipmate.getOfficeNumber();
+            const firstMate = `
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="name">${name}</h4>
+                        <p class="role">First Mate<p/>
+                        <p class="id">Crew Member: ${id}</p>
+                        <p class="email">${email}</p>
+                        <p class="officeNumber">${officeNumber}</p>
+                    </div>
+                </div>
+            </div>
+            `
+            crewProfile.push(firstMate);
+        } else if (role === 'Engineer') {
+            const gitHub = shipmate.getGitHub();
+            const shipwright = `
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="name">${name}</h4>
+                        <p class="role">Shipwright<p/>
+                        <p class="id">Crew Member: ${id}</p>
+                        <p class="email">${email}</p>
+                        <p class="gitHub">${gitHub}</p>
+                    </div>
+                </div>
+            </div>
+            `
+            crewProfile.push(shipwright);
+        } else {
+            const school = shipmate.getSchool();
+            const crewmate = `
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="name">${name}</h4>
+                        <p class="role">Crewmate<p/>
+                        <p class="id">Crew Member:${id}</p>
+                        <p class="email">${email}</p>
+                        <p class="school">${school}</p>
+                    </div>
+                </div>
+            </div>
+            `
+            crewProfile.push(crewmate);
+        };
+    };
+    return crewProfile.join('');
+};
+
 const generateHTML = (crew) => {
     return `<!DOCTYPE html>
 <html lang="en">
