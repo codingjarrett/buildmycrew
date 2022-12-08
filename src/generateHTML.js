@@ -11,49 +11,49 @@ const renderCrewProfile = (crew) => {
         if (role === 'Manager') {
             const officeNumber = shipmate.getOfficeNumber();
             const firstMate = `
-            <div class="col-md">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="name">${name}</h4>
-                        <p class="role">First Mate<p/>
-                        <p class="id">Crew Member: ${id}</p>
-                        <p class="email">${email}</p>
-                        <p class="officeNumber">${officeNumber}</p>
+                <div class="col-md">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="name">${name}</h4>
+                            <p class="role">First Mate</p>
+                            <p class="id">Crew Member: ${id}</p>
+                            <p class="email"><a href="mailto:${email}">${email}</a></p>
+                            <p class="officeNumber">${officeNumber}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
             `
             crewProfile.push(firstMate);
         } else if (role === 'Engineer') {
             const gitHub = shipmate.getGitHub();
             const shipwright = `
-            <div class="col-md">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="name">${name}</h4>
-                        <p class="role">Shipwright<p/>
-                        <p class="id">Crew Member: ${id}</p>
-                        <p class="email">${email}</p>
-                        <p class="gitHub">${gitHub}</p>
+                <div class="col-md">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="name">${name}</h4>
+                            <p class="role">Shipwright</p>
+                            <p class="id">Crew Member: ${id}</p>
+                            <p class="email"><a href="mailto:${email}">${email}</a></p>
+                            <p class="gitHub"><a href="http://github.com/${gitHub}" target="_blank">${gitHub}</a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
             `
             crewProfile.push(shipwright);
         } else {
             const school = shipmate.getSchool();
             const crewmate = `
-            <div class="col-md">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="name">${name}</h4>
-                        <p class="role">Crewmate<p/>
-                        <p class="id">Crew Member:${id}</p>
-                        <p class="email">${email}</p>
-                        <p class="school">${school}</p>
+                <div class="col-md">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="name">${name}</h4>
+                            <p class="role">Crewmate</p>
+                            <p class="id">Crew Member:${id}</p>
+                            <p class="email"><a href="mailto:${email}">${email}</a></p>
+                            <p class="school">${school}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
             `
             crewProfile.push(crewmate);
         };
