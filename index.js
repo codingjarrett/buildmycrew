@@ -105,3 +105,9 @@ const addCrewmate = async () => {
         })
     });
 };
+
+const writeToFile = (answers) => {
+    fs.writeFile('./dist/index.html', answers, (err) => {
+        err ? console.log(err) : console.log('Crew roster created!')
+    });
+};
